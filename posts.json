@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Sniffing de tráfico en redes Zigbee",
+    "user": "packetghost",
+    "timestamp": "1720631940",
+    "excerpt": "Exploramos vulnerabilidades y herramientas para monitorear dispositivos domóticos Zigbee.",
+    "image": "https://placehold.co/800x400/000000/34d399?text=Zigbee+Sniff",
+    "link": "zigbee-sniffing"
+  },
+  {
+    "title": "Felicidad ¿Realidad o ficción?",
+    "user": "Spiegel",
+    "timestamp": "1665206400",
+    "excerpt": "La felicidad no es una estación de llegada, sino una forma de viajar. ¿Está en nosotros o es sólo un espejismo?",
+    "image": "https://placehold.co/800x400/000000/34d399?text=Felicidad+Interior",
+    "link": "felicidad"
+  }
+]

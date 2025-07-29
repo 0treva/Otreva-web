@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Otreva Blog</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente VT323 -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'VT323', monospace;
+      background-color: #0d0d0d;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 2;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+    .text-glow {
+      text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+    }
+    .border-glow {
+      border-color: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+    }
+    .blinking-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2em;
+      background-color: #34d399;
+      animation: blink 1s step-end infinite;
+      margin-left: 5px;
+    }
+    @keyframes blink {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: #34d399; }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'mono': ['VT323', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-black text-green-400">
+
+  <header class="fixed top-0 left-0 w-full bg-black border-b-2 border-green-500/50 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 id="typing-header" class="text-5xl font-bold text-green-400 text-glow"></h1>
+      <nav class="flex items-center space-x-6 text-lg">
+        <a href="/" class="hover:text-white hover:bg-green-500 px-2">[Inicio]</a>
+        <div class="relative group">
+          <button class="hover:text-white hover:bg-green-500 px-2">[Autores]</button>
+          <ul class="absolute hidden group-hover:block bg-black border border-green-500 text-green-300 mt-2 w-32 z-20">
+            <li><button onclick="filterByAuthor('Otreva')" class="block w-full text-left px-4 py-2 hover:bg-green-500 hover:text-black">Otreva</button></li>
+            <li><button onclick="filterByAuthor('Spiegel')" class="block w-full text-left px-4 py-2 hover:bg-green-500 hover:text-black">Spiegel</button></li>
+            <li><button onclick="filterByAuthor('Anonymous')" class="block w-full text-left px-4 py-2 hover:bg-green-500 hover:text-black">Anonymous</button></li>
+          </ul>
+        </div>
+        <a href="mailto:contacto@otreva.net" class="hover:text-white hover:bg-green-500 px-2">[Contacto]</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-28"></div>
+
+  <div class="container mx-auto px-4 py-8 relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+    <!-- Contenido Principal -->
+    <main id="post-container" class="lg:col-span-2 space-y-12"></main>
+
+    <!-- Barra lateral -->
+    <aside class="space-y-8 text-lg">
+      <!-- Bloque whoami -->
+      <div class="bg-gray-900/70 p-6 border-2 border-glow">
+        <h3 class="text-xl font-bold mb-4 border-b-2 pb-2 border-green-500/50 text-white text-glow">> whoami</h3>
+        <img src="https://placehold.co/150x150/000000/34d399?text=0xCA" alt="Autor" class="mx-auto mb-4 w-24 h-24 object-cover border-2 border-green-500/50" />
+        <p class="text-green-300 text-center">
+          Solo otro fantasma en la máquina. La información quiere ser libre.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="text-center mt-16 pt-8 border-t-2 border-green-500/50">
+    <p class="text-green-500 text-sm">// 2025 Otreva Blog. Conexión terminada.</p>
+  </footer>
+
+  <script>
+    const text = "Otreva Blog";
+    const header = document.getElementById("typing-header");
+    const typingDelay = 150;
+    const playSound = true;
+    const beep = new Audio("https://www.soundjay.com/button/sounds/beep-07.mp3");
+    let i = 0;
+
+    function typeNextChar() {
+      if (i < text.length) {
+        header.textContent += text.charAt(i);
+        if (playSound) beep.play();
+        i++;
+        setTimeout(typeNextChar, typingDelay);
+      } else {
+        const cursor = document.createElement("span");
+        cursor.className = "blinking-cursor";
+        header.appendChild(cursor);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typeNextChar();
+    });
+  </script>
+
+  <script>
+    let allPosts = [];
+
+    function renderPosts(posts) {
+      const container = document.getElementById('post-container');
+      container.innerHTML = '';
+      posts.forEach(post => {
+        const article = document.createElement('article');
+        article.className = "bg-gray-900/70 p-6 rounded-none border-2 border-glow";
+        const postLink = post.link ? '/' + post.link : '#';
+
+        article.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover mb-6 border-2 border-green-500/50">
+          <h2 class="text-3xl font-bold mb-3 text-white text-glow">
+            <a href="${postLink}">> ${post.title}</a>
+          </h2>
+          <div class="text-sm text-green-300 mb-4">
+            <span>USER: ${post.user}</span> &bull; <span>TIMESTAMP: ${post.timestamp}</span>
+          </div>
+          <p class="text-green-300 leading-relaxed text-lg">${post.excerpt}</p>
+          <a href="${postLink}" class="inline-block mt-6 text-white font-bold hover:underline">> LEER_MÁS.sh</a>
+        `;
+        container.appendChild(article);
+      });
+    }
+
+    function filterByAuthor(author) {
+      const filtered = allPosts.filter(post => post.user.toLowerCase() === author.toLowerCase());
+      renderPosts(filtered);
+    }
+
+    fetch('posts.json')
+      .then(response => response.json())
+      .then(posts => {
+        allPosts = posts;
+        renderPosts(allPosts);
+      })
+      .catch(error => console.error("Error cargando los posts:", error));
+  </script>
+
+</body>
+</html>

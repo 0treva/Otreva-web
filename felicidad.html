@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felicidad - Otreva Blog</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente VT323 -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'VT323', monospace;
+      background-color: #0d0d0d;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 2;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+    .text-glow {
+      text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+    }
+    .border-glow {
+      border-color: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+    }
+    .blinking-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2em;
+      background-color: #34d399;
+      animation: blink 1s step-end infinite;
+      margin-left: 5px;
+    }
+    @keyframes blink {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: #34d399; }
+    }
+  </style>
+</head>
+<body class="bg-black text-green-400">
+
+  <div class="container mx-auto px-4 py-8 relative z-10">
+
+    <!-- Encabezado -->
+    <header class="mb-12 border-b-2 border-green-500/50 pb-4">
+      <h1 class="text-4xl font-bold text-green-400 text-glow mb-2">
+        Felicidad ¿Realidad o ficción?<span class="blinking-cursor"></span>
+      </h1>
+      <p class="text-green-300 text-sm">Por <strong>Spiegel</strong> · Publicado el <strong>Oct 8, 2022</strong></p>
+    </header>
+
+    <!-- Artículo -->
+    <article class="bg-gray-900/70 p-6 border-2 border-glow space-y-6 text-lg leading-relaxed text-green-300">
+    <p>No hay quien no quiera, ¡oh hermano Galión!, vivir felizmente, pero para ver qué es lo que hace la vida feliz, todos andan ciegos; por eso no es nada fácil conseguir una vida bienaventurada hasta el punto de que tanto más se separa de ella quien con más vehemencia la busca, si se equivoca de camino, pues si va por el contrario, la misma velocidad es causa de un mayor distanciamiento.</p>
+
+    <blockquote class="border-l-4 border-green-500 pl-4 italic text-green-400">
+        Cicerón. De la vida bienaventurada.
+    </blockquote>
+
+    <p>La felicidad está en uno mismo.</p>
+
+    <p>Pero ¿por qué digo esto? Esto se debe a múltiples razones, una de las cuales es que la felicidad no es una estación de llegada sino una forma de viajar. Esto podría sonar como alguna frase motivacional que hay en la parte de atrás de un calendario, pero implica muchas más cosas, tales como que la felicidad no es un estado permanente, esto lo podemos comprobar checando nuestro estado de ánimo a lo largo del día, nos resultará imposible permanecer eufóricos todo el día ya que podremos identificar en nosotros muchas más emociones (claro, asumiendo que puedas nombrarlas, en caso de no ser así simplemente las reconocerás como esto de no-felicidad).</p>
+
+    <p>Conforme a esto podríamos afirmar que el destino nos encierra, que simplemente no es posible ser feliz, que la felicidad no está dentro de nosotros. Cuando todo el mundo va en tu contra, cuando te pasan todas las desgracias que te podrían pasar o simplemente un mal día ¿Cómo podrías ser feliz en estas situaciones sólo contigo mismo, si se supone que la felicidad está en ti? Con esto sería lógico pensar que la felicidad es algo circunstancial, que está fuera de nuestro alcance.</p>
+
+    <p>La felicidad no es un estado sencillo de alcanzar, sino que por el contrario podría parecer que entre más se busca más lejos de nosotros parece estar, como un niño caprichoso que se acerca a ti solamente cuando lo desea y cuando tú lo buscas corre de ti, se aleja.</p>
+
+    <p>No se puede definir lo que es la felicidad de una forma sencilla ya que es algo sumamente complejo de entender en palabras, sería ridículo pensar en hablar de algo que es sumamente complejo de definir, pero es algo que todos entendemos. Aunque el concepto tiende a variar de persona a persona, esto debido a lo variados que somos, mismo que podemos confirmar simplemente al momento de hablar con una persona y compartir vivencias. En lo que podemos estar todos de acuerdo es que todas las personas buscamos tener una vida feliz, es uno de nuestros principales motores al momento de hacer las cosas, siempre buscamos estar lo más cercano a feliz y lo más alejados de la infelicidad (no-feliz).</p>
+
+    <p>Sería lógico pensar que la felicidad es la ignorancia, que eras feliz antes de tener el conocimiento que te volvió infeliz, aquella cosa que una vez sabes ya no te permite volver a ser la misma feliz persona, podrías con esto afirmar “Si la ignorancia es dicha, entonces quiero ser dichosamente ignorante”, en este sentido tampoco la felicidad estaría dentro de ti, sino estaría directamente relacionada con la cantidad de información que recibes del mundo exterior.</p>
+
+    <p>La razón por la que yo afirmo que la felicidad está dentro de ti es que a pesar de todo lo que haya en el mundo, cómo te esté tratando la vida, todo lo que te quiten, lo único que no te pueden quitar es a ti mismo, a pesar de los estímulos externos que puede haber, al final siempre estás tú y está el cómo tú reaccionas a estos estímulos, no se trata de ser feliz todo el tiempo, se trata sencillamente de ser feliz. Tú propiamente eres la razón misma de tu felicidad, no está fuera de ti, tu felicidad no la sientes desde una parte que no seas tú, sino que sencillamente la sientes dentro de ti, aunque sientas felicidad por otra persona donde sientes la felicidad es en ti, en tu interior, nosotros podemos pensar que estás feliz, pero el único que lo puede saber con seguridad eres tú mismo, es por la misma naturaleza que está dentro de ti y otra persona no puede con seguridad saber lo que hay en tu interior.</p>
+
+    <p>Así que sencillamente la felicidad en este sentido sería el cómo tú mismo percibes al mundo y el cómo reaccionas a esos estímulos.</p>
+    </article>
+
+    <!-- Volver -->
+    <div class="mt-12 text-center">
+    <a href="index.html" class="px-4 py-2 border border-green-500 text-green-400 hover:bg-green-500 hover:text-black font-bold">[ VOLVER AL BLOG ]</a>
+    </div>
+
+
+  </div>
+
+</body>
+</html>
