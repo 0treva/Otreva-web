@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
-
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,58 +8,41 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- CRT Scanline Effect -->
-    <div class="scanlines"></div>
-
-    <!-- Matrix Background Effect -->
-    <canvas id="matrix-bg"></canvas>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <pre class="ascii-art">
- ██████╗ ████████╗██████╗ ███████╗██╗   ██╗ █████╗     ██████╗ ██╗      ██████╗  ██████╗ 
-██╔═══██╗╚══██╔══╝██╔══██╗██╔════╝██║   ██║██╔══██╗    ██╔══██╗██║     ██╔═══██╗██╔════╝ 
-██║   ██║   ██║   ██████╔╝█████╗  ██║   ██║███████║    ██████╔╝██║     ██║   ██║██║  ███╗
-██║   ██║   ██║   ██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══██║    ██╔══██╗██║     ██║   ██║██║   ██║
-╚██████╔╝   ██║   ██║  ██║███████╗ ╚████╔╝ ██║  ██║    ██████╔╝███████╗╚██████╔╝╚██████╔╝
- ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝  ╚═╝    ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝ 
-            </pre>
-
+    <!-- Header -->
+    <header class="medium-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">Otreva.</a>
+            </div>
+            
             <nav class="nav">
-                <a href="index.html" class="nav-link">← BACK TO BLOG</a>
-                <button id="theme-toggle" class="theme-toggle" title="Toggle light/dark mode">
-                    <span class="theme-icon">☀</span>
+                <a href="index.html" class="nav-btn" style="text-decoration: underline;">← Volver al Blog</a>
+                <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
+                    <span class="theme-icon">☾</span>
                 </button>
             </nav>
-        </header>
+        </div>
+    </header>
 
+    <!-- Main Container -->
+    <main class="container" style="display: block; max-width: 800px; padding: 4rem 2rem;">
         <!-- Post View -->
-        <main class="blog-container">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="terminal-title">> root@underground:~$ cat /var/log/post_<span
-                            id="post-id-title"></span>.log</span>
-                </div>
-                <div id="post-content" class="posts">
-                    <!-- Post will be loaded here -->
-                </div>
-            </div>
-        </main>
+        <article id="post-content" class="full-post">
+            <!-- Post will be dynamically loaded here -->
+        </article>
+    </main>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2019-2025 <a href="index.html" class="domain-link">otreva.net</a> :: All rights reserved</p>
-            <p>Contact: <a href="mailto:contact@otreva.net" class="contact-link">contact@otreva.net</a></p>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="sidebar-footer" style="max-width: 800px; margin: 0 auto; padding: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
+        <p>© 2025 Otreva Blog. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:contact@otreva.net">contact@otreva.net</a></p>
+    </footer>
 
+    <!-- Scripts -->
+    <script src="app.js"></script>
     <script src="post.js"></script>
 </body>
-
 </html>

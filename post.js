@@ -4,59 +4,13 @@
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
-    initMatrixBackground();
-    setupThemeToggle();
-    loadTheme();
+    // initMatrixBackground is removed
+    // setupThemeToggle and loadTheme are handled by app.js mostly, but we can do it if needed
+    // Actually app.js is now loaded, so we only need to loadPost().
     loadPost();
 });
 
-// === Matrix Background Effect ===
-function initMatrixBackground() {
-    const canvas = document.getElementById('matrix-bg');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const charArray = chars.split('');
-
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-
-    const drops = [];
-    for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * -100;
-    }
-
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00ff00';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = charArray[Math.floor(Math.random() * charArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-
-            drops[i]++;
-        }
-    }
-
-    setInterval(draw, 33);
-
-    window.addEventListener('resize', function () {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-}
+// === Matrix background removed for clean Medium styling ===
 
 // === Load Post ===
 async function loadPost() {
@@ -75,9 +29,14 @@ async function loadPost() {
             const response = await fetch('blog-data.json');
             if (response.ok) {
                 initialPosts = await response.json();
+            } else if (typeof initialBlogData !== 'undefined') {
+                initialPosts = initialBlogData;
             }
         } catch (error) {
-            console.log('Using embedded data');
+            console.log('Using embedded data from app.js fallback');
+            if (typeof initialBlogData !== 'undefined') {
+                initialPosts = initialBlogData;
+            }
         }
 
         // Get user posts
@@ -112,18 +71,16 @@ function renderPost(post) {
     const tags = post.tags || [];
 
     container.innerHTML = `
-        <article class="post">
-            <div class="post-header">
-                <h2 class="post-title">${escapeHTML(post.title)}</h2>
-                <div class="post-meta">
-                    <span class="post-author">@${escapeHTML(post.author)}</span>
-                    <span class="post-date">${date}</span>
-                </div>
+        <article class="post" style="border: none;">
+            <div class="post-meta">
+                <span class="post-author">${escapeHTML(post.author)}</span>
+                <span class="post-date">· ${date}</span>
             </div>
-            <div class="post-content">${escapeHTML(post.content).replace(/\n/g, '<br>')}</div>
+            <h1 class="post-title" style="font-size: 2.5rem; margin-top: 1rem;">${escapeHTML(post.title)}</h1>
+            <div class="post-content" style="margin-top: 2rem; display: block; -webkit-line-clamp: unset; overflow: visible;">${escapeHTML(post.content).replace(/\n/g, '<br><br>')}</div>
             ${tags.length > 0 ? `
-                <div class="post-tags">
-                    ${tags.map(tag => `<span class="tag">#${escapeHTML(tag)}</span>`).join('')}
+                <div class="post-tags" style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                    ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
                 </div>
             ` : ''}
         </article>
@@ -153,40 +110,14 @@ function escapeHTML(str) {
 // === Show Error ===
 function showError(message) {
     const container = document.getElementById('post-content');
-    container.innerHTML = `
-        <div class="message error show">
-            <p>ERROR: ${message}</p>
-            <p><a href="index.html" class="nav-link">← Back to blog</a></p>
-        </div>
-    `;
-}
-
-// === Theme Toggle ===
-function setupThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-
-            const themeIcon = this.querySelector('.theme-icon');
-            if (themeIcon) {
-                themeIcon.textContent = newTheme === 'light' ? '☾' : '☀';
-            }
-        });
+    if (container) {
+        container.innerHTML = `
+            <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+                <p>ERROR: ${message}</p>
+                <p style="margin-top: 1rem;"><a href="index.html" style="text-decoration: underline;">← Volver al blog</a></p>
+            </div>
+        `;
     }
 }
 
-function loadTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-
-    const themeIcon = document.querySelector('.theme-icon');
-    if (themeIcon) {
-        themeIcon.textContent = savedTheme === 'light' ? '☾' : '☀';
-    }
-}
+// (Theme handling is delegated entirely to app.js, which is loaded in post.html)
