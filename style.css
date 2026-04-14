@@ -356,28 +356,30 @@ a {
     color: rgba(230, 230, 230, 0.88);
 }
 
-/* Separación CLARA entre párrafos — como Xataka */
+/* Separación CLARA entre párrafos — padding no colapsa, !important gana al reset */
 .full-post .post-content p {
-    margin-top: 0;
-    margin-bottom: 0;              /* NO margin, usamos padding para separar */
-    padding-bottom: 1.6em;         /* espacio que no colapsa */
-    display: block;
+    display: block !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 1.75em !important;  /* ~35px de aire visible entre párrafos */
     word-break: break-word;
 }
 
-/* Parrafo vacio = solo silencio visual pequeño */
+/* Párrafo vacío: ocultar */
 .full-post .post-content p:empty {
-    display: none;
+    display: none !important;
+    padding: 0 !important;
 }
 
-/* Primer párrafo: lead en negrita estilo Xataka */
-.full-post .post-content p:first-child {
-    font-size: 1.08em;
-    font-weight: 600;
-    font-style: normal;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-color);
-    padding-bottom: 2em;
+/* Primer párrafo: lead en negrita (estilo Xataka) */
+.full-post .post-content > p:first-of-type {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.08em !important;
+    font-weight: 600 !important;
+    padding-bottom: 2em !important;
+    color: var(--text-color) !important;
+    line-height: 1.7 !important;
 }
 
 /* Imágenes dentro del artículo */
@@ -385,25 +387,31 @@ a {
 .full-post .post-content img {
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
-    margin: 2rem auto;
+    border-radius: 8px;
+    margin: 2.5rem auto !important;
     display: block;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
 
-/* Blockquote estilo Medium: línea izquierda + cursiva */
+/* ---- Blockquote estilo Medium/literario ---- */
 .full-post .post-content blockquote {
-    border-left: 3px solid var(--text-color);
-    margin: 2.5rem 0;
-    padding: 0.25rem 0 0.25rem 1.5rem;
+    border: none !important;
+    border-left: 3px solid var(--text-color) !important;
+    margin: 2.5rem 0 !important;          /* espacio antes y después */
+    padding: 0.5rem 0 0.5rem 1.6rem !important;
     font-style: italic;
     color: var(--text-secondary);
-    font-size: 1.15em;
-    line-height: 1.75;
-    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.8;
+    text-align: left !important;          /* citas nunca justificadas */
+    background: transparent;
+    position: relative;
 }
 
+/* Párrafos DENTRO de una blockquote: sin padding inferior propio */
 .full-post .post-content blockquote p {
-    margin-bottom: 0.4em;
+    padding-bottom: 0.4em !important;
+    font-style: inherit;
 }
 
 /* Subtítulos dentro del post */
@@ -411,10 +419,10 @@ a {
 .full-post .post-content h3,
 .full-post .post-content h4 {
     font-family: 'Playfair Display', Georgia, serif;
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2.5rem !important;
+    margin-bottom: 0.75rem !important;
     line-height: 1.3;
-    text-align: left;
+    text-align: left !important;
 }
 
 .full-post .post-content h2 { font-size: 1.6rem; }
@@ -422,20 +430,20 @@ a {
 
 /* HR separador */
 .full-post .post-content hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 3rem 0;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    margin: 3rem 0 !important;
 }
 
 /* Listas */
 .full-post .post-content ul,
 .full-post .post-content ol {
-    padding-left: 1.75rem;
-    margin-bottom: 2em;
+    padding-left: 1.75rem !important;
+    margin-bottom: 2em !important;
 }
 
 .full-post .post-content li {
-    margin-bottom: 0.6em;
+    margin-bottom: 0.6em !important;
     line-height: 1.7;
 }
 

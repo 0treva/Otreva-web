@@ -61,38 +61,52 @@ function renderPost(post) {
 
     let bodyHTML;
     if (isHTML) {
-        // Rich content from Medium: sanitize but preserve structure
         bodyHTML = sanitizeHTML(post.content);
     } else {
-        // Plain text posts: convert to paragraphs
+        // Plain text: split on blank lines (double newline) for paragraph breaks
         bodyHTML = post.content
-            .split('\n')
-            .map(line => line.trim())
-            .filter(line => line.length > 0)
-            .map(line => `<p>${escapeHTML(line)}</p>`)
+            .split(/\n\s*\n/)                     // separar por líneas en blanco dobles
+            .map(block => block.trim())
+            .filter(block => block.length > 0)
+            .map(block => {
+                // Para cada bloque, unir líneas con espacio
+                const text = block.split('\n').map(l => l.trim()).join(' ');
+                return `<p>${escapeHTML(text)}</p>`;
+            })
             .join('');
+        
+        // Si no había dobles saltos, separar por salto simple
+        if (!bodyHTML.includes('</p><p>') && post.content.includes('\n')) {
+            bodyHTML = post.content
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .map(line => `<p>${escapeHTML(line)}</p>`)
+                .join('');
+        }
     }
 
-    // Cover image (first image from Medium)
+    // Aplicar clase al contenedor directamente
+    container.className = 'full-post';
+
+    // Cover image si existe
     const coverHTML = post.cover
         ? `<img src="${escapeAttr(post.cover)}" alt="${escapeAttr(post.title)}" class="post-cover">`
         : '';
 
     container.innerHTML = `
-        <article class="full-post">
-            ${coverHTML}
-            <h1 class="post-title">${escapeHTML(post.title)}</h1>
-            <div class="post-meta">
-                <span class="post-author">${escapeHTML(post.author)}</span>
-                <span class="post-date">· ${date}</span>
+        ${coverHTML}
+        <h1 class="post-title">${escapeHTML(post.title)}</h1>
+        <div class="post-meta" style="margin-bottom:2rem;">
+            <span class="post-author">${escapeHTML(post.author)}</span>
+            <span class="post-date"> · ${date}</span>
+        </div>
+        <div class="post-content">${bodyHTML}</div>
+        ${tags.length > 0 ? `
+            <div class="post-tags post-tags-footer">
+                ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
             </div>
-            <div class="post-content">${bodyHTML}</div>
-            ${tags.length > 0 ? `
-                <div class="post-tags post-tags-footer">
-                    ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
-                </div>
-            ` : ''}
-        </article>
+        ` : ''}
     `;
 }
 
