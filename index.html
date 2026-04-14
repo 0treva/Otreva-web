@@ -17,7 +17,6 @@
             <div class="logo">
                 <a href="index.html">Otreva.</a>
             </div>
-            
             <nav class="nav">
                 <div class="filter-dropdown">
                     <label for="author-filter" class="filter-label">Ver:</label>
@@ -34,29 +33,30 @@
                 <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
                     <span class="theme-icon">☾</span>
                 </button>
-                <a href="login.html" id="footer-secret" class="write-btn">Escribir</a>
             </nav>
         </div>
     </header>
 
+    <!-- Hero -->
     <div class="hero-section">
         <h1>Mantente curioso.</h1>
         <p>Descubre historias, ideas y conocimientos técnicos de nuestros autores.</p>
     </div>
 
-    <!-- Main Container -->
-    <main class="container">
-        <!-- Blog Posts Container -->
-        <div class="blog-list-container">
-            <div id="posts-container" class="posts">
-                <!-- Posts will be dynamically loaded here -->
-            </div>
+    <!-- Main: solo la lista de posts, centrada -->
+    <main class="posts-wrapper">
+        <div id="posts-container" class="posts">
+            <!-- Posts loaded dynamically -->
         </div>
-        
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-module">
-                <h3>Descubrir más de lo que te importa</h3>
+    </main>
+
+    <!-- Footer reactivo con todo lo del sidebar -->
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+
+            <!-- Columna: Temas -->
+            <div class="footer-col">
+                <h4>Explorar temas</h4>
                 <div class="tags-cloud">
                     <span class="tag-pill">Filosofía</span>
                     <span class="tag-pill">Seguridad</span>
@@ -66,18 +66,29 @@
                     <span class="tag-pill">Programación</span>
                 </div>
             </div>
-            <div class="sidebar-module">
-                <p class="status-info">Post totales: <strong id="post-count">0</strong></p>
-                <p class="status-info">Autores: <strong>3</strong></p>
+
+            <!-- Columna: Blog -->
+            <div class="footer-col">
+                <h4>Otreva Blog</h4>
+                <p class="footer-desc">Un espacio de reflexión sobre tecnología, filosofía y todo lo que nos mueve. Sin anuncios, sin algoritmos.</p>
+                <p class="footer-stat">Posts: <strong id="post-count">16</strong> &nbsp;·&nbsp; Autores: <strong>3</strong></p>
             </div>
-            <div class="sidebar-footer">
-                <a href="donations.html">Apoyar</a>
-                <a href="#">Privacidad</a>
-                <a href="mailto:contact@otreva.net">Contacto</a>
-                <p>&copy; 2025 Otreva Blog</p>
+
+            <!-- Columna: Enlaces -->
+            <div class="footer-col">
+                <h4>Links</h4>
+                <ul class="footer-links">
+                    <li><a href="donations.html">❤️ Apoyar el blog</a></li>
+                    <li><a href="mailto:contact@otreva.net">✉ Contacto</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                </ul>
             </div>
-        </aside>
-    </main>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>© 2025 Otreva Blog · Hecho con cariño, sin publicidad.</p>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

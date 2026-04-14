@@ -146,13 +146,18 @@ a {
 }
 
 /* ================= Main Layout ================= */
-.container {
-    max-width: 1200px;
+/* Lista de posts: columna única centrada, ancho Medium */
+.posts-wrapper {
+    max-width: 740px;
     margin: 0 auto;
     padding: 3rem 2rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
+}
+
+/* Clase .container usada en post.html (vista individual) */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
 }
 
 /* ================= Posts ================= */
@@ -206,17 +211,8 @@ a {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
     overflow: hidden;
-    /* Evitar áreas vacías por exceso de margin entre párrafos en preview */
     word-break: break-word;
-}
-
-/* Párrafos dentro del post-content del index (preview): sin espacio extra */
-.post-content p {
-    margin: 0;
-    display: inline;
-}
-.post-content p::after {
-    content: ' ';
+    text-align: left; /* preview no justificado: más legible en 3 líneas */
 }
 
 .post-tags {
@@ -249,28 +245,31 @@ a {
 
 .full-post .post-content {
     margin-top: 2rem;
-    font-family: charternitc, 'Georgia', serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 21px;
-    line-height: 1.58;
+    line-height: 1.68;
     color: rgba(0, 0, 0, 0.84);
     display: block;
     -webkit-line-clamp: unset;
     overflow: visible;
+    text-align: justify;           /* texto justificado como publicación impresa */
+    text-justify: inter-word;
+    hyphens: auto;                 /* silabeo automático para evitar ríos de espacios */
+    -webkit-hyphens: auto;
 }
 
 [data-theme="dark"] .full-post .post-content {
-    color: rgba(255, 255, 255, 0.84);
+    color: rgba(230, 230, 230, 0.88);
 }
 
 .full-post .post-content p {
     margin-bottom: 1.75rem;
     letter-spacing: -0.003em;
     word-break: break-word;
-    /* Garantizar que cada párrafo tenga espacio real, no colapsado */
     display: block;
 }
 
-/* Si hay párrafos vacíos (líneas en blanco del texto original), ocultarlos */
+/* Ocultar párrafos vacíos generados por líneas en blanco del texto original */
 .full-post .post-content p:empty {
     display: none;
 }
@@ -332,13 +331,93 @@ a {
     margin-top: 0.5rem;
 }
 
-/* Responsive */
+/* ================= Site Footer (ex-sidebar) ================= */
+.site-footer {
+    background-color: var(--gray-bg);
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+}
+
+.site-footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: 3rem;
+}
+
+.footer-col h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.footer-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.footer-stat {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer-links a {
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--text-color);
+}
+
+.site-footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 1.25rem 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Responsive: todo en columna en pantallas pequeñas */
 @media (max-width: 900px) {
-    .container {
-        grid-template-columns: 1fr;
+    .site-footer-inner {
+        grid-template-columns: 1fr 1fr;
     }
     .hero-section h1 {
         font-size: 3rem;
+    }
+    .posts-wrapper {
+        padding: 2rem 1.25rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .site-footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .donations-hero h1 {
+        font-size: 2.2rem;
     }
 }
 
