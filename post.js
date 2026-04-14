@@ -70,16 +70,24 @@ function renderPost(post) {
     const date = formatDate(post.date);
     const tags = post.tags || [];
 
+    // Transformar texto plano en párrafos semánticos reales para el Medium style
+    const paragraphsHTML = escapeHTML(post.content)
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => `<p>${line}</p>`)
+        .join('');
+
     container.innerHTML = `
-        <article class="post" style="border: none;">
-            <div class="post-meta">
+        <article class="post">
+            <h1 class="post-title">${escapeHTML(post.title)}</h1>
+            <div class="post-meta" style="margin-bottom: 2rem;">
                 <span class="post-author">${escapeHTML(post.author)}</span>
                 <span class="post-date">· ${date}</span>
             </div>
-            <h1 class="post-title" style="font-size: 2.5rem; margin-top: 1rem;">${escapeHTML(post.title)}</h1>
-            <div class="post-content" style="margin-top: 2rem; display: block; -webkit-line-clamp: unset; overflow: visible;">${escapeHTML(post.content).replace(/\n/g, '<br><br>')}</div>
+            <div class="post-content">${paragraphsHTML}</div>
             ${tags.length > 0 ? `
-                <div class="post-tags" style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <div class="post-tags" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
                     ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
                 </div>
             ` : ''}

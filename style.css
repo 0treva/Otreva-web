@@ -232,6 +232,46 @@ a {
     display: inline-block;
 }
 
+/* ================= Single Post View ================= */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.full-post {
+    border: none;
+    padding-left: 0;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.full-post .post-content {
+    margin-top: 2rem;
+    font-family: charternitc, 'Georgia', serif;
+    font-size: 21px;
+    line-height: 1.58;
+    color: rgba(0, 0, 0, 0.84);
+}
+
+[data-theme="dark"] .full-post .post-content {
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.full-post .post-content p {
+    margin-bottom: 2rem;
+    letter-spacing: -0.003em;
+    word-break: break-word;
+}
+
+.full-post .post-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
 /* ================= Sidebar ================= */
 .sidebar {
     position: sticky;
