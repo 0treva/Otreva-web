@@ -2,15 +2,9 @@
 // OTREVA BLOG - Individual Post View
 // ==========================================
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
-    // initMatrixBackground is removed
-    // setupThemeToggle and loadTheme are handled by app.js mostly, but we can do it if needed
-    // Actually app.js is now loaded, so we only need to loadPost().
     loadPost();
 });
-
-// === Matrix background removed for clean Medium styling ===
 
 // === Load Post ===
 async function loadPost() {
@@ -18,12 +12,11 @@ async function loadPost() {
     const postId = parseInt(urlParams.get('id'));
 
     if (!postId) {
-        showError('No post ID specified');
+        showError('No se especificó el artículo');
         return;
     }
 
     try {
-        // Load initial data
         let initialPosts = [];
         try {
             const response = await fetch('blog-data.json');
@@ -33,61 +26,69 @@ async function loadPost() {
                 initialPosts = initialBlogData;
             }
         } catch (error) {
-            console.log('Using embedded data from app.js fallback');
             if (typeof initialBlogData !== 'undefined') {
                 initialPosts = initialBlogData;
             }
         }
 
-        // Get user posts
         const userPosts = JSON.parse(localStorage.getItem('userPosts') || '[]');
         const deletedIds = JSON.parse(localStorage.getItem('deletedPosts') || '[]');
-
-        // Find the post
         const allPosts = [...initialPosts, ...userPosts];
         const post = allPosts.find(p => p.id === postId && !deletedIds.includes(p.id));
 
         if (post) {
             renderPost(post);
         } else {
-            showError('Post not found or has been deleted');
+            showError('Artículo no encontrado');
         }
     } catch (error) {
         console.error('Error loading post:', error);
-        showError('Error loading post');
+        showError('Error al cargar el artículo');
     }
 }
 
 // === Render Post ===
 function renderPost(post) {
     const container = document.getElementById('post-content');
-    const titleSpan = document.getElementById('post-id-title');
+    if (!container) return;
 
-    if (titleSpan) {
-        titleSpan.textContent = post.id;
-    }
+    // Update page title
+    document.title = `${post.title} · Otreva Blog`;
 
     const date = formatDate(post.date);
     const tags = post.tags || [];
+    const isHTML = post.content_type === 'html';
 
-    // Transformar texto plano en párrafos semánticos reales para el Medium style
-    const paragraphsHTML = escapeHTML(post.content)
-        .split('\n')
-        .map(line => line.trim())
-        .filter(line => line.length > 0)
-        .map(line => `<p>${line}</p>`)
-        .join('');
+    let bodyHTML;
+    if (isHTML) {
+        // Rich content from Medium: sanitize but preserve structure
+        bodyHTML = sanitizeHTML(post.content);
+    } else {
+        // Plain text posts: convert to paragraphs
+        bodyHTML = post.content
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line.length > 0)
+            .map(line => `<p>${escapeHTML(line)}</p>`)
+            .join('');
+    }
+
+    // Cover image (first image from Medium)
+    const coverHTML = post.cover
+        ? `<img src="${escapeAttr(post.cover)}" alt="${escapeAttr(post.title)}" class="post-cover">`
+        : '';
 
     container.innerHTML = `
-        <article class="post">
+        <article class="full-post">
+            ${coverHTML}
             <h1 class="post-title">${escapeHTML(post.title)}</h1>
-            <div class="post-meta" style="margin-bottom: 2rem;">
+            <div class="post-meta">
                 <span class="post-author">${escapeHTML(post.author)}</span>
                 <span class="post-date">· ${date}</span>
             </div>
-            <div class="post-content">${paragraphsHTML}</div>
+            <div class="post-content">${bodyHTML}</div>
             ${tags.length > 0 ? `
-                <div class="post-tags" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <div class="post-tags post-tags-footer">
                     ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
                 </div>
             ` : ''}
@@ -95,24 +96,54 @@ function renderPost(post) {
     `;
 }
 
+// === Sanitize HTML (keep safe tags, strip dangerous ones) ===
+function sanitizeHTML(html) {
+    const allowed = ['p','br','strong','em','b','i','h2','h3','h4',
+                     'blockquote','ul','ol','li','img','a','hr','figure','figcaption'];
+    // Use DOMParser for safe parsing
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Remove script/style/iframe
+    doc.querySelectorAll('script, style, iframe, noscript').forEach(el => el.remove());
+
+    // Make images responsive
+    doc.querySelectorAll('img').forEach(img => {
+        img.classList.add('post-img');
+        img.setAttribute('loading', 'lazy');
+        // Remove fixed width/height
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+    });
+
+    // Make links open in new tab
+    doc.querySelectorAll('a').forEach(a => {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    return doc.body.innerHTML;
+}
+
+// === Escape helpers ===
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+}
+
+function escapeAttr(str) {
+    return (str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 // === Format Date ===
 function formatDate(dateString) {
     const date = new Date(dateString);
-    const options = {
+    return date.toLocaleDateString('es-MX', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    return date.toLocaleDateString('en-US', options);
-}
-
-// === Escape HTML ===
-function escapeHTML(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+        day: 'numeric'
+    });
 }
 
 // === Show Error ===
@@ -120,12 +151,12 @@ function showError(message) {
     const container = document.getElementById('post-content');
     if (container) {
         container.innerHTML = `
-            <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
-                <p>ERROR: ${message}</p>
-                <p style="margin-top: 1rem;"><a href="index.html" style="text-decoration: underline;">← Volver al blog</a></p>
+            <div style="padding:3rem 0; text-align:center; color:var(--text-secondary);">
+                <p style="font-size:1.1rem;">${escapeHTML(message)}</p>
+                <p style="margin-top:1.25rem;">
+                    <a href="index.html" style="text-decoration:underline;">← Volver al blog</a>
+                </p>
             </div>
         `;
     }
 }
-
-// (Theme handling is delegated entirely to app.js, which is loaded in post.html)
