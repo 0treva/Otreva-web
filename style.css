@@ -251,6 +251,9 @@ a {
     font-size: 21px;
     line-height: 1.58;
     color: rgba(0, 0, 0, 0.84);
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
 }
 
 [data-theme="dark"] .full-post .post-content {
