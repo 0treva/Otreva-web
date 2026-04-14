@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Otreva Blog - Post View">
+    <title>Otreva Blog :: Post</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- CRT Scanline Effect -->
+    <div class="scanlines"></div>
+
+    <!-- Matrix Background Effect -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <pre class="ascii-art">
+ ██████╗ ████████╗██████╗ ███████╗██╗   ██╗ █████╗     ██████╗ ██╗      ██████╗  ██████╗ 
+██╔═══██╗╚══██╔══╝██╔══██╗██╔════╝██║   ██║██╔══██╗    ██╔══██╗██║     ██╔═══██╗██╔════╝ 
+██║   ██║   ██║   ██████╔╝█████╗  ██║   ██║███████║    ██████╔╝██║     ██║   ██║██║  ███╗
+██║   ██║   ██║   ██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══██║    ██╔══██╗██║     ██║   ██║██║   ██║
+╚██████╔╝   ██║   ██║  ██║███████╗ ╚████╔╝ ██║  ██║    ██████╔╝███████╗╚██████╔╝╚██████╔╝
+ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝  ╚═╝    ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝ 
+            </pre>
+
+            <nav class="nav">
+                <a href="index.html" class="nav-link">← BACK TO BLOG</a>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle light/dark mode">
+                    <span class="theme-icon">☀</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Post View -->
+        <main class="blog-container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-title">> root@underground:~$ cat /var/log/post_<span
+                            id="post-id-title"></span>.log</span>
+                </div>
+                <div id="post-content" class="posts">
+                    <!-- Post will be loaded here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2019-2025 <a href="index.html" class="domain-link">otreva.net</a> :: All rights reserved</p>
+            <p>Contact: <a href="mailto:contact@otreva.net" class="contact-link">contact@otreva.net</a></p>
+        </footer>
+    </div>
+
+    <script src="post.js"></script>
+</body>
+
+</html>

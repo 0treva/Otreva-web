@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Otreva Blog - Perspectivas sobre tecnología y filosofía">
+    <title>Otreva Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="medium-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">Otreva.</a>
+            </div>
+            
+            <nav class="nav">
+                <div class="filter-dropdown">
+                    <label for="author-filter" class="filter-label">Ver:</label>
+                    <select id="author-filter" class="author-select">
+                        <option value="all">Todos</option>
+                        <option value="anonymous">Anónimo</option>
+                        <option value="otreva">Otreva</option>
+                        <option value="spiegel">Spiegel</option>
+                    </select>
+                </div>
+                <button id="lang-toggle" class="nav-btn lang-toggle" title="Cambiar idioma">
+                    <span class="lang-text">ES</span>
+                </button>
+                <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
+                    <span class="theme-icon">☾</span>
+                </button>
+                <a href="login.html" id="footer-secret" class="write-btn">Escribir</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <h1>Mantente curioso.</h1>
+        <p>Descubre historias, ideas y conocimientos técnicos de nuestros autores.</p>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Blog Posts Container -->
+        <div class="blog-list-container">
+            <div id="posts-container" class="posts">
+                <!-- Posts will be dynamically loaded here -->
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-module">
+                <h3>Descubrir más de lo que te importa</h3>
+                <div class="tags-cloud">
+                    <span class="tag-pill">Filosofía</span>
+                    <span class="tag-pill">Seguridad</span>
+                    <span class="tag-pill">Ingeniería</span>
+                    <span class="tag-pill">Pensamientos</span>
+                    <span class="tag-pill">Tecnología</span>
+                    <span class="tag-pill">Programación</span>
+                </div>
+            </div>
+            <div class="sidebar-module">
+                <p class="status-info">Post totales: <strong id="post-count">0</strong></p>
+                <p class="status-info">Autores: <strong>3</strong></p>
+            </div>
+            <div class="sidebar-footer">
+                <a href="donations.html">Apoyar</a>
+                <a href="#">Privacidad</a>
+                <a href="mailto:contact@otreva.net">Contacto</a>
+                <p>&copy; 2025 Otreva Blog</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
