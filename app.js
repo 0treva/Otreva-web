@@ -394,26 +394,57 @@ function renderPosts(posts) {
     container.innerHTML = posts.map(post => createPostHTML(post)).join('');
 }
 
-// === Create Post HTML ===
+// === Create Post HTML (card estilo Xataka/Medium) ===
 function createPostHTML(post) {
     const date = formatDate(post.date);
     const tags = post.tags || [];
 
+    // Extracto: quitar HTML si viene de Medium, tomar primeros ~180 chars
+    let excerpt = '';
+    if (post.content_type === 'html') {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = post.content;
+        excerpt = (tmp.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+    } else {
+        excerpt = post.content.replace(/\s+/g, ' ').trim().slice(0, 200);
+    }
+    if (excerpt.length === 200) excerpt += '…';
+
+    // Avatar inicial del autor
+    const initials = post.author.charAt(0).toUpperCase();
+    const authorColors = { otreva: '#1a8917', spiegel: '#0f3460', anonymous: '#6B6B6B' };
+    const avatarColor = authorColors[post.author] || '#6B6B6B';
+
+    // Minutos de lectura estimados
+    const words = excerpt.split(' ').length;
+    const readingMins = Math.max(1, Math.ceil(words / 200));
+
+    // Imagen de cover si existe
+    const coverHTML = post.cover
+        ? `<div class="card-cover" onclick="viewPost(${post.id})">
+               <img src="${post.cover}" alt="${escapeHTML(post.title)}" loading="lazy">
+           </div>`
+        : '';
+
     return `
-    <article class="post">
-            <div class="post-meta">
-                <span class="post-author">${escapeHTML(post.author)}</span>
-                <span class="post-date">· ${date}</span>
+    <article class="post-card" onclick="viewPost(${post.id})">
+        ${coverHTML}
+        <div class="card-body">
+            <div class="card-meta">
+                <span class="card-avatar" style="background:${avatarColor}">${initials}</span>
+                <span class="card-author">${escapeHTML(post.author)}</span>
+                <span class="card-sep">·</span>
+                <span class="card-date">${date}</span>
+                <span class="card-sep">·</span>
+                <span class="card-read">${readingMins} min</span>
             </div>
-            <h2 class="post-title" onclick="viewPost(${post.id})">${escapeHTML(post.title)}</h2>
-            <div class="post-content">${escapeHTML(post.content).replace(/\n/g, '<br>')}</div>
-            ${tags.length > 0 ? `
-                <div class="post-tags">
-                    ${tags.map(tag => `<span class="tag-pill">${escapeHTML(tag)}</span>`).join('')}
-                </div>
-            ` : ''
-        }
-        </article>
+            <h2 class="card-title">${escapeHTML(post.title)}</h2>
+            <p class="card-excerpt">${escapeHTML(excerpt)}</p>
+            ${tags.length > 0
+                ? `<div class="card-tags">${tags.slice(0, 3).map(t => `<span class="tag-pill">${escapeHTML(t)}</span>`).join('')}</div>`
+                : ''}
+        </div>
+    </article>
     `;
 }
 
@@ -425,14 +456,11 @@ function viewPost(postId) {
 // === Format Date ===
 function formatDate(dateString) {
     const date = new Date(dateString);
-    const options = {
+    return date.toLocaleDateString('es-MX', {
         year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    return date.toLocaleDateString('en-US', options);
+        month: 'long',
+        day: 'numeric'
+    });
 }
 
 // === Escape HTML to prevent XSS ===
