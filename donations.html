@@ -1,157 +1,113 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
-
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Support Otreva Blog - Bitcoin Donations">
-    <title>Support Otreva Blog :: Donations</title>
+    <meta name="description" content="Apoya Otreva Blog - Donaciones en Bitcoin">
+    <title>Apoya Otreva Blog</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <header class="header-pro">
-            <div class="header-content">
-                <a href="index.html" class="logo">otreva.net</a>
-                <nav class="nav-pro">
-                    <a href="index.html" class="nav-link-pro">Blog</a>
-                    <button id="theme-toggle" class="theme-toggle-pro" title="Toggle light/dark mode">
-                        <span class="theme-icon">☀</span>
-                    </button>
-                </nav>
+    <!-- Header -->
+    <header class="medium-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">Otreva.</a>
             </div>
-        </header>
+            <nav class="nav">
+                <a href="index.html" class="nav-btn">← Blog</a>
+                <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
+                    <span class="theme-icon">☾</span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Donations Section -->
-        <main class="donations-main">
-            <div class="donations-hero">
-                <h1 class="donations-title">Support Our Work</h1>
-                <p class="donations-subtitle">Help keep Otreva Blog independent and ad-free</p>
-            </div>
-
-            <div class="donations-content">
-                <div class="donation-card">
-                    <h2>Bitcoin Donations</h2>
-                    <p class="donation-description">
-                        We accept Bitcoin donations to maintain our independence and keep the blog running without
-                        advertisements. Your contribution helps us continue creating quality technical content.
-                    </p>
-
-                    <div class="btc-info">
-                        <div class="btc-address-section">
-                            <label>Bitcoin Address:</label>
-                            <div class="btc-address-box">
-                                <code class="btc-address">bc1qdq3e6sgvzmacmt8lzccvnlfsk4kpup4wjaxwr6</code>
-                                <button class="copy-btn" onclick="copyBTCAddress()">
-                                    <span id="copy-text">Copy</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="qr-section">
-                            <p class="qr-label">Or scan this QR code:</p>
-                            <div class="qr-container">
-                                <img src="qr_bitcoin.png" alt="Bitcoin QR Code" class="qr-code">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="donation-note">
-                        <p><strong>Thank you for your support!</strong></p>
-                        <p>Every contribution helps us maintain server costs, improve our infrastructure, and dedicate
-                            more time to creating valuable technical content for the community.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Professional Footer -->
-        <footer class="footer-pro">
-            <div class="footer-content">
-                <div class="footer-columns">
-                    <div class="footer-column">
-                        <h3>Blog</h3>
-                        <a href="index.html">Home</a>
-                        <a href="index.html#posts">Posts</a>
-                        <a href="index.html">Authors</a>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Resources</h3>
-                        <a href="donations.html">Support Us</a>
-                        <a href="mailto:contact@otreva.net">Contact</a>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Connect</h3>
-                        <a href="mailto:contact@otreva.net">Email</a>
-                        <a href="#">RSS Feed</a>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Otreva</h3>
-                        <p class="footer-description">Independent tech blog focused on software development, security,
-                            and computer science.</p>
-                        <p class="footer-tagline">Est. 2019</p>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <p>&copy; 2019-2025 otreva.net. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+    <!-- Hero -->
+    <div class="donations-hero">
+        <div class="donations-hero-inner">
+            <span class="donations-badge">₿ Bitcoin</span>
+            <h1>Apoya nuestro trabajo</h1>
+            <p>Otreva es un blog independiente, libre de anuncios y algoritmos. Si te ha aportado algo, considera hacer una donación.</p>
+        </div>
     </div>
 
+    <!-- Main -->
+    <main class="donations-main">
+
+        <!-- Bitcoin Card -->
+        <div class="donation-card">
+            <div class="donation-card-header">
+                <div class="btc-icon">₿</div>
+                <h2>Donación en Bitcoin</h2>
+                <p class="donation-description">
+                    Aceptamos donaciones en Bitcoin para mantener nuestra independencia editorial y seguir publicando sin publicidad. Cada aportación nos ayuda a cubrir costos de servidor y dedicar más tiempo a escribir.
+                </p>
+            </div>
+
+            <div class="btc-address-section">
+                <label class="btc-label">Dirección Bitcoin:</label>
+                <div class="btc-address-box">
+                    <code class="btc-address" id="btc-addr">bc1qdq3e6sgvzmacmt8lzccvnlfsk4kpup4wjaxwr6</code>
+                    <button class="copy-btn" onclick="copyBTCAddress()">
+                        <span id="copy-text">Copiar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <p class="qr-label">O escanea el código QR:</p>
+                <div class="qr-container">
+                    <img src="qr_bitcoin.png" alt="Código QR Bitcoin" class="qr-code">
+                </div>
+            </div>
+
+            <div class="donation-thank-you">
+                <p>❤️ <strong>¡Gracias por tu apoyo!</strong> Cada contribución, por pequeña que sea, nos motiva a seguir escribiendo.</p>
+            </div>
+        </div>
+
+        <!-- Why section -->
+        <div class="donations-why">
+            <h2>¿Por qué donar?</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <span class="why-icon">🚫</span>
+                    <h3>Sin anuncios</h3>
+                    <p>Tu donación nos permite seguir sin depender de publicidad que rastrea o interrumpe la lectura.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">✍️</span>
+                    <h3>Contenido libre</h3>
+                    <p>Escribimos sobre lo que nos importa, sin presiones editoriales ni patrocinadores que nos limiten.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">🔒</span>
+                    <h3>Privacidad</h3>
+                    <p>Bitcoin permite donar de forma anónima y directa, sin intermediarios ni cargos abusivos.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="donations-footer">
+        <p>© 2025 Otreva Blog · <a href="index.html">Volver al blog</a></p>
+    </footer>
+
+    <script src="app.js"></script>
     <script>
-        // Theme toggle
-        function setupThemeToggle() {
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function () {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    const themeIcon = this.querySelector('.theme-icon');
-                    if (themeIcon) {
-                        themeIcon.textContent = newTheme === 'light' ? '☾' : '☀';
-                    }
-                });
-            }
-        }
-
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            const themeIcon = document.querySelector('.theme-icon');
-            if (themeIcon) {
-                themeIcon.textContent = savedTheme === 'light' ? '☾' : '☀';
-            }
-        }
-
         function copyBTCAddress() {
-            const address = 'bc1qdq3e6sgvzmacmt8lzccvnlfsk4kpup4wjaxwr6';
+            const address = document.getElementById('btc-addr').textContent;
             navigator.clipboard.writeText(address).then(() => {
                 const copyText = document.getElementById('copy-text');
-                copyText.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyText.textContent = 'Copy';
-                }, 2000);
+                copyText.textContent = '¡Copiado!';
+                setTimeout(() => { copyText.textContent = 'Copiar'; }, 2000);
             });
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            setupThemeToggle();
-            loadTheme();
-        });
     </script>
 </body>
-
 </html>

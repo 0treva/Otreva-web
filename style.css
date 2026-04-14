@@ -116,18 +116,9 @@ a {
 }
 
 .write-btn {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: background-color 0.2s;
+    display: none; /* Oculto: not needed on GitHub Pages */
 }
 
-.write-btn:hover {
-    background-color: var(--primary-hover);
-}
 
 /* ================= Hero Section ================= */
 .hero-section {
@@ -210,11 +201,22 @@ a {
     color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
     overflow: hidden;
+    /* Evitar áreas vacías por exceso de margin entre párrafos en preview */
+    word-break: break-word;
+}
+
+/* Párrafos dentro del post-content del index (preview): sin espacio extra */
+.post-content p {
+    margin: 0;
+    display: inline;
+}
+.post-content p::after {
+    content: ' ';
 }
 
 .post-tags {
@@ -261,9 +263,16 @@ a {
 }
 
 .full-post .post-content p {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
     letter-spacing: -0.003em;
     word-break: break-word;
+    /* Garantizar que cada párrafo tenga espacio real, no colapsado */
+    display: block;
+}
+
+/* Si hay párrafos vacíos (líneas en blanco del texto original), ocultarlos */
+.full-post .post-content p:empty {
+    display: none;
 }
 
 .full-post .post-title {
@@ -330,5 +339,248 @@ a {
     }
     .hero-section h1 {
         font-size: 3rem;
+    }
+}
+
+/* ================= Donations Page ================= */
+.donations-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 5rem 2rem;
+    text-align: center;
+    color: white;
+}
+
+[data-theme="light"] .donations-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.donations-hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.donations-badge {
+    display: inline-block;
+    background: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+    border: 1px solid rgba(255, 165, 0, 0.4);
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.donations-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.donations-hero p {
+    font-size: 1.15rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.donations-main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.donation-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+.donation-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btc-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #f7931a, #f4b348);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 700;
+    margin: 0 auto 1.25rem;
+}
+
+.donation-card-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.donation-description {
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 1rem;
+}
+
+.btc-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+}
+
+.btc-address-section {
+    margin: 2rem 0;
+}
+
+.btc-address-box {
+    display: flex;
+    align-items: center;
+    background: var(--gray-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+}
+
+.btc-address {
+    flex: 1;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.82rem;
+    color: var(--text-color);
+    word-break: break-all;
+    background: none;
+    border: none;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+    font-family: inherit;
+}
+
+.copy-btn:hover {
+    background: var(--primary-hover);
+}
+
+.qr-section {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.qr-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.qr-container {
+    display: inline-block;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.qr-code {
+    width: 180px;
+    height: 180px;
+    display: block;
+}
+
+.donation-thank-you {
+    background: linear-gradient(135deg, rgba(26, 137, 23, 0.08), rgba(26, 137, 23, 0.03));
+    border: 1px solid rgba(26, 137, 23, 0.2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.donations-why h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.why-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.why-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.why-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.why-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.donations-footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.donations-footer a {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+    .donations-hero h1 {
+        font-size: 2.5rem;
+    }
+    .btc-address {
+        font-size: 0.7rem;
     }
 }
