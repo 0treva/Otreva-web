@@ -1,48 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Otreva Blog - Post View">
-    <title>Otreva Blog :: Post</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Artículo de Otreva.">
+    <meta name="theme-color" content="#f7f6f2">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Otreva">
+    <title>Artículo — Otreva</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?v=20260824">
+    <script src="post.js?v=20260824-2" defer></script>
 </head>
-<body>
-    <!-- Header -->
-    <header class="medium-header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="index.html">Otreva.</a>
-            </div>
-            
-            <nav class="nav">
-                <a href="index.html" class="nav-btn" style="text-decoration: underline;">← Volver al Blog</a>
-                <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
-                    <span class="theme-icon">☾</span>
+<body class="article-page">
+    <a class="skip-link" href="#article-content">Saltar al artículo</a>
+    <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+    <header class="site-header article-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="Otreva, inicio">
+                <span class="brand-mark" aria-hidden="true">O</span>
+                <span class="brand-name">Otreva</span>
+                <span class="brand-edition">Cuaderno</span>
+            </a>
+
+            <nav class="header-nav" aria-label="Navegación del artículo">
+                <a class="back-to-archive" href="index.html#archivo"><span aria-hidden="true">←</span> Archivo</a>
+                <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
                 </button>
             </nav>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="container" style="display: block; max-width: 800px; padding: 4rem 2rem;">
-        <!-- Post content - class 'full-post' asignada dinámicamente por post.js -->
-        <article id="post-content" class="full-post">
-            <!-- Cargando... -->
+    <main class="article-shell" id="article-content">
+        <article class="full-post" id="post-content" aria-busy="true">
+            <div class="article-loading">
+                <span></span><span></span><span></span>
+                <p>Cargando la historia…</p>
+            </div>
         </article>
+
+        <section class="related-section" id="related-section" aria-labelledby="related-title" hidden>
+            <p class="section-kicker">Continúa leyendo</p>
+            <h2 id="related-title">Más de este autor</h2>
+            <div class="related-grid" id="related-posts"></div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="sidebar-footer" style="max-width: 800px; margin: 0 auto; padding: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
-        <p>© 2025 Otreva Blog. Todos los derechos reservados.</p>
-        <p>Contacto: <a href="mailto:contact@otreva.net">contact@otreva.net</a></p>
+    <footer class="site-footer article-footer">
+        <div class="footer-inner">
+            <div>
+                <a class="footer-brand" href="index.html">Otreva.</a>
+                <p>Lecturas independientes, sin anuncios ni ruido.</p>
+            </div>
+            <nav aria-label="Enlaces de pie de página">
+                <a href="index.html#archivo">Archivo</a>
+                <a href="index.html#autores">Autores</a>
+                <a href="donations.html">Apoyar</a>
+                <a href="mailto:contact@otreva.net">Contacto</a>
+            </nav>
+            <p class="copyright">© <span id="current-year">2026</span> Otreva</p>
+        </div>
     </footer>
-
-    <!-- Scripts -->
-    <script src="app.js"></script>
-    <script src="post.js"></script>
 </body>
 </html>

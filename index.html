@@ -1,102 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-theme="light">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Otreva Blog - Perspectivas sobre tecnología y filosofía">
-    <title>Otreva Blog</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Otreva es un cuaderno independiente de tecnología, filosofía y pensamiento escrito por Otreva y Spiegel.">
+    <meta name="theme-color" content="#f7f6f2">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Otreva — Tecnología, filosofía y pensamiento">
+    <meta property="og:description" content="Dos autores. Ideas para leer sin prisa.">
+    <title>Otreva — Tecnología, filosofía y pensamiento</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?v=20260824">
+    <script src="app.js?v=20260824-2" defer></script>
 </head>
-
 <body>
-    <!-- Header -->
-    <header class="medium-header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="index.html">Otreva.</a>
-            </div>
-            <nav class="nav">
-                <div class="filter-dropdown">
-                    <label for="author-filter" class="filter-label">Ver:</label>
-                    <select id="author-filter" class="author-select">
-                        <option value="all">Todos</option>
-                        <option value="anonymous">Anónimo</option>
-                        <option value="otreva">Otreva</option>
-                        <option value="spiegel">Spiegel</option>
-                    </select>
-                </div>
-                <button id="theme-toggle" class="nav-btn theme-toggle" title="Modo claro/oscuro">
-                    <span class="theme-icon">☾</span>
+    <a class="skip-link" href="#archivo">Saltar a los artículos</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="Otreva, inicio">
+                <span class="brand-mark" aria-hidden="true">O</span>
+                <span class="brand-name">Otreva</span>
+                <span class="brand-edition">Cuaderno</span>
+            </a>
+
+            <nav class="header-nav" aria-label="Navegación principal">
+                <a href="#archivo">Archivo</a>
+                <a href="#autores">Autores</a>
+                <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
                 </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero -->
-    <div class="hero-section">
-        <h1>Mantente curioso.</h1>
-        <p>Descubre historias, ideas y conocimientos técnicos de nuestros autores.</p>
-    </div>
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-inner">
+                <p class="eyebrow">Otreva <span aria-hidden="true">×</span> Spiegel</p>
+                <h1 id="hero-title">Ideas para leer<br>sin prisa.</h1>
+                <p class="hero-copy">Un archivo independiente sobre tecnología, filosofía y las preguntas que aparecen entre ambas.</p>
+                <a class="text-link hero-link" href="#archivo">Empezar a leer <span aria-hidden="true">↓</span></a>
+            </div>
+        </section>
 
-    <!-- Main: solo la lista de posts, centrada -->
-    <main class="posts-wrapper">
-        <div id="posts-container" class="posts">
-            <!-- Posts loaded dynamically -->
+        <div class="editorial-layout">
+            <section class="archive" id="archivo" aria-labelledby="archive-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Archivo</p>
+                        <h2 id="archive-title">Todas las historias</h2>
+                    </div>
+                    <p class="results-count" id="results-count" aria-live="polite">Cargando…</p>
+                </div>
+
+                <div class="archive-tools" aria-label="Buscar y filtrar artículos">
+                    <label class="search-box" for="post-search">
+                        <span class="search-icon" aria-hidden="true">⌕</span>
+                        <span class="sr-only">Buscar en el archivo</span>
+                        <input id="post-search" type="search" placeholder="Buscar por título, tema o palabra" autocomplete="off">
+                    </label>
+
+                    <div class="filter-list" role="group" aria-label="Filtrar por autor">
+                        <button class="filter-chip is-active" type="button" data-author="all" aria-pressed="true">Todos <span data-count="all"></span></button>
+                        <button class="filter-chip" type="button" data-author="otreva" aria-pressed="false">Otreva <span data-count="otreva"></span></button>
+                        <button class="filter-chip" type="button" data-author="spiegel" aria-pressed="false">Spiegel <span data-count="spiegel"></span></button>
+                    </div>
+                </div>
+
+                <div class="stories" id="posts-container" aria-busy="true">
+                    <article class="story-skeleton" aria-label="Cargando artículo"></article>
+                    <article class="story-skeleton" aria-label="Cargando artículo"></article>
+                    <article class="story-skeleton" aria-label="Cargando artículo"></article>
+                </div>
+            </section>
+
+            <aside class="authors" id="autores" aria-labelledby="authors-title">
+                <div class="aside-heading">
+                    <p class="section-kicker">Las firmas</p>
+                    <h2 id="authors-title">Dos miradas,<br>un mismo archivo.</h2>
+                </div>
+
+                <article class="author-profile author-otreva">
+                    <div class="author-avatar" aria-hidden="true">O</div>
+                    <div>
+                        <h3>Otreva</h3>
+                        <p>Tecnología, redes y seguridad desde la curiosidad práctica.</p>
+                        <button class="author-filter-link" type="button" data-author-target="otreva">Ver <span data-author-total="otreva">0</span> artículo</button>
+                    </div>
+                </article>
+
+                <article class="author-profile author-spiegel">
+                    <div class="author-avatar" aria-hidden="true">S</div>
+                    <div>
+                        <h3>Spiegel</h3>
+                        <p>Ensayos personales sobre filosofía, sociedad y crecimiento.</p>
+                        <button class="author-filter-link" type="button" data-author-target="spiegel">Ver <span data-author-total="spiegel">0</span> artículos</button>
+                    </div>
+                </article>
+
+                <a class="medium-source" href="https://spiegel-pablo27.medium.com/" target="_blank" rel="noopener noreferrer">
+                    <span>Archivo original de Spiegel en Medium</span>
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </aside>
         </div>
     </main>
 
-    <!-- Footer reactivo con todo lo del sidebar -->
     <footer class="site-footer">
-        <div class="site-footer-inner">
-
-            <!-- Columna: Temas -->
-            <div class="footer-col">
-                <h4>Explorar temas</h4>
-                <div class="tags-cloud">
-                    <span class="tag-pill">Filosofía</span>
-                    <span class="tag-pill">Seguridad</span>
-                    <span class="tag-pill">Ingeniería</span>
-                    <span class="tag-pill">Pensamientos</span>
-                    <span class="tag-pill">Tecnología</span>
-                    <span class="tag-pill">Programación</span>
-                </div>
+        <div class="footer-inner">
+            <div>
+                <a class="footer-brand" href="index.html">Otreva.</a>
+                <p>Lecturas independientes, sin anuncios ni ruido.</p>
             </div>
-
-            <!-- Columna: Blog -->
-            <div class="footer-col">
-                <h4>Otreva Blog</h4>
-                <p class="footer-desc">Un espacio de reflexión sobre tecnología, filosofía y todo lo que nos mueve. Sin
-                    anuncios, sin algoritmos.</p>
-                <p class="footer-stat">Posts: <strong id="post-count">16</strong> &nbsp;·&nbsp; Autores:
-                    <strong>3</strong></p>
-            </div>
-
-            <!-- Columna: Enlaces -->
-            <div class="footer-col">
-                <h4>Links</h4>
-                <ul class="footer-links">
-                    <li><a href="donations.html">❤️ Apoyar el blog</a></li>
-                    <li><a href="mailto:contact@otreva.net">✉ Contacto</a></li>
-                    <li><a href="#">Privacidad</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="site-footer-bottom">
-            <p>© 2025 Otreva Blog · Hecho con cariño, sin publicidad.</p>
-            <button id="lang-toggle" class="footer-lang-btn lang-toggle" title="Switch to English">
-                <span class="lang-text">ES</span> · Ver en otro idioma
-            </button>
+            <nav aria-label="Enlaces de pie de página">
+                <a href="#archivo">Archivo</a>
+                <a href="#autores">Autores</a>
+                <a href="donations.html">Apoyar</a>
+                <a href="mailto:contact@otreva.net">Contacto</a>
+            </nav>
+            <p class="copyright">© <span id="current-year">2026</span> Otreva</p>
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <noscript>
+        <p class="noscript-message">Este archivo necesita JavaScript para mostrar las entradas.</p>
+    </noscript>
 </body>
-
 </html>
