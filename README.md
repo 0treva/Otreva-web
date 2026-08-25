@@ -5,8 +5,8 @@ Blog independiente de Otreva y Spiegel, diseñado para una lectura limpia y sin 
 ## Contenido
 
 - 11 entradas publicadas por dos autores.
-- 10 ensayos de Spiegel migrados desde su [archivo original en Medium](https://spiegel-pablo27.medium.com/), con sus títulos, fechas, contenido, imágenes y enlaces de origen.
-- 1 entrada del archivo original de Otreva.
+- 10 ensayos de Spiegel, con sus títulos, fechas, contenido, imágenes y enlaces a sus publicaciones en [Medium](https://spiegel-pablo27.medium.com/).
+- 1 entrada de Otreva.
 - Filtros por autor, búsqueda de texto y tiempos de lectura calculados a partir del contenido completo.
 - Tema claro y oscuro con respeto por la preferencia del sistema.
 - Vista individual optimizada para lectura, progreso de página, enlaces para compartir y artículos relacionados.
@@ -56,6 +56,10 @@ Los autores admitidos en la interfaz pública son `otreva` y `spiegel`. Para una
 ## Publicación
 
 El repositorio está preparado para GitHub Pages y conserva el dominio personalizado indicado en `CNAME`.
+
+## Seguridad
+
+El sitio es completamente estático y no necesita contraseñas, tokens ni claves en el navegador. Cualquier autenticación o panel de publicación futuro debe vivir en un servicio del lado del servidor y leer sus secretos desde variables de entorno o un gestor de secretos; nunca desde archivos HTML, CSS, JavaScript o JSON publicados por GitHub Pages.
 
 ---
 

@@ -137,6 +137,7 @@ button {
     background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .header-inner {
@@ -157,8 +158,8 @@ button {
 }
 
 .brand-mark {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -204,6 +205,40 @@ button {
     color: var(--text);
 }
 
+.home-header {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(8, 12, 12, 0.92);
+    color: #f3f1e9;
+}
+
+.home-header .brand-mark {
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3f1e9;
+}
+
+.home-header .brand-edition {
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(243, 241, 233, 0.5);
+}
+
+.home-header .header-nav {
+    color: rgba(243, 241, 233, 0.68);
+}
+
+.home-header .header-nav a:hover {
+    color: #ffffff;
+}
+
+.home-header .icon-button {
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.home-header .icon-button:hover {
+    border-color: rgba(255, 255, 255, 0.42);
+    background: rgba(255, 255, 255, 0.08);
+}
+
 .icon-button {
     width: 38px;
     height: 38px;
@@ -232,36 +267,50 @@ button {
 .hero {
     position: relative;
     overflow: hidden;
-    min-height: 520px;
+    min-height: max(600px, calc(100svh - var(--header-height)));
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--line);
-    background:
-        radial-gradient(circle at 82% 20%, color-mix(in srgb, var(--spiegel-accent) 13%, transparent) 0 10%, transparent 35%),
-        radial-gradient(circle at 12% 90%, color-mix(in srgb, var(--otreva-accent) 14%, transparent) 0 8%, transparent 32%),
-        var(--hero);
+    border-bottom: 1px solid #1e2926;
+    background: #080d0e;
 }
 
-.hero::after {
-    content: "O";
+.hero::before {
+    content: "";
     position: absolute;
-    right: max(3vw, calc((100vw - 1120px) / 2));
-    top: 50%;
-    color: color-mix(in srgb, var(--text) 4%, transparent);
-    font-family: var(--serif);
-    font-size: clamp(280px, 34vw, 520px);
-    font-weight: 700;
-    line-height: 0.7;
-    transform: translateY(-48%);
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(90deg, rgba(5, 10, 11, 0.5) 0%, rgba(5, 10, 11, 0.16) 52%, rgba(5, 10, 11, 0.06) 100%),
+        linear-gradient(0deg, rgba(5, 10, 11, 0.5) 0%, transparent 36%);
     pointer-events: none;
+}
+
+.hero-media {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: min(1120px, calc(100% - 40px));
+    min-height: inherit;
     margin: 0 auto;
-    padding: 76px 0 84px;
+    padding: 92px 0 106px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-copy-block {
+    max-width: 760px;
 }
 
 .eyebrow,
@@ -283,20 +332,30 @@ button {
 .hero h1 {
     max-width: 760px;
     margin: 0;
+    color: #f5f2e9;
     font-family: var(--serif);
-    font-size: clamp(68px, 8.5vw, 112px);
+    font-size: clamp(68px, 8vw, 110px);
     font-weight: 600;
     letter-spacing: -0.065em;
-    line-height: 0.83;
+    line-height: 0.86;
+    text-wrap: balance;
 }
 
 .hero-copy {
-    max-width: 520px;
+    max-width: 480px;
     margin: 32px 0 0;
-    color: var(--text-soft);
+    color: rgba(245, 242, 233, 0.72);
     font-family: var(--serif);
-    font-size: 21px;
+    font-size: 20px;
     line-height: 1.45;
+}
+
+.hero .eyebrow {
+    color: #91cba6;
+}
+
+.hero .eyebrow span {
+    color: rgba(245, 242, 233, 0.4);
 }
 
 .text-link {
@@ -316,6 +375,11 @@ button {
     margin-top: 32px;
     padding-bottom: 5px;
     border-bottom: 1px solid currentColor;
+    color: #a7d8b8;
+}
+
+.hero-link:hover {
+    color: #d6f0df;
 }
 
 /* Editorial layout */
@@ -763,12 +827,12 @@ button {
 
 .footer-inner {
     width: min(1120px, calc(100% - 40px));
-    min-height: 210px;
+    min-height: 176px;
     margin: 0 auto;
-    padding: 52px 0;
+    padding: 48px 0;
     display: grid;
     grid-template-columns: 1fr auto auto;
-    align-items: start;
+    align-items: center;
     gap: 72px;
 }
 
@@ -777,13 +841,6 @@ button {
     font-size: 30px;
     font-weight: 700;
     letter-spacing: -0.04em;
-}
-
-.footer-inner > div p {
-    margin: 8px 0 0;
-    color: var(--text-soft);
-    font-family: var(--serif);
-    font-size: 13px;
 }
 
 .footer-inner nav {
@@ -1505,15 +1562,15 @@ button {
     }
 
     .hero {
-        min-height: 440px;
+        min-height: 560px;
     }
 
     .hero-inner {
-        padding: 62px 0 68px;
+        padding: 70px 0 76px;
     }
 
     .hero h1 {
-        font-size: clamp(56px, 17vw, 78px);
+        font-size: clamp(56px, 15vw, 76px);
     }
 
     .hero-copy {
@@ -1605,8 +1662,14 @@ button {
         font-size: 23px;
     }
 
-    .hero::after {
-        right: -90px;
+    .hero::before {
+        background:
+            linear-gradient(90deg, rgba(5, 10, 11, 0.84) 0%, rgba(5, 10, 11, 0.58) 72%, rgba(5, 10, 11, 0.32) 100%),
+            linear-gradient(0deg, rgba(5, 10, 11, 0.62) 0%, transparent 42%);
+    }
+
+    .hero-media img {
+        object-position: 66% center;
     }
 
     .section-heading h2 {

@@ -83,8 +83,7 @@ function renderPost(post) {
     const sourceNote = sourceURL
         ? `
             <p class="source-note">
-                Esta historia forma parte del archivo original de Spiegel.
-                <a href="${escapeAttribute(sourceURL)}" target="_blank" rel="noopener noreferrer">Ver publicación en Medium <span aria-hidden="true">↗</span></a>
+                <a href="${escapeAttribute(sourceURL)}" target="_blank" rel="noopener noreferrer">Leer también en Medium <span aria-hidden="true">↗</span></a>
             </p>
         `
         : '';
