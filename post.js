@@ -58,7 +58,6 @@ function renderPost(post) {
     const author = ARTICLE_AUTHORS[post.author];
     const tags = Array.isArray(post.tags) ? post.tags : [];
     const coverURL = safeHTTPURL(post.cover);
-    const sourceURL = safeHTTPURL(post.source_url);
     const plainText = stripHTML(post.content).replace(/\s+/g, ' ').trim();
     const readingMinutes = estimateReadingTime(plainText);
     const description = makeExcerpt(plainText, 158);
@@ -73,18 +72,6 @@ function renderPost(post) {
             <figure class="article-cover-wrap">
                 <img class="article-cover" src="${escapeAttribute(coverURL)}" alt="" decoding="async">
             </figure>
-        `
-        : '';
-
-    const sourceAction = sourceURL
-        ? `<a class="article-action source-action" href="${escapeAttribute(sourceURL)}" target="_blank" rel="noopener noreferrer">Medium <span aria-hidden="true">↗</span></a>`
-        : '';
-
-    const sourceNote = sourceURL
-        ? `
-            <p class="source-note">
-                <a href="${escapeAttribute(sourceURL)}" target="_blank" rel="noopener noreferrer">Leer también en Medium <span aria-hidden="true">↗</span></a>
-            </p>
         `
         : '';
 
@@ -106,7 +93,6 @@ function renderPost(post) {
                 <div class="article-actions">
                     <button class="article-action" id="share-article" type="button" aria-label="Compartir este artículo">Compartir</button>
                     <button class="article-action icon-action" id="copy-link" type="button" aria-label="Copiar enlace">⌁</button>
-                    ${sourceAction}
                 </div>
             </div>
             <p class="action-status" id="action-status" role="status" aria-live="polite"></p>
@@ -122,7 +108,6 @@ function renderPost(post) {
                     ${tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
                 </div>
             ` : ''}
-            ${sourceNote}
             <div class="end-mark" aria-hidden="true">O</div>
         </footer>
     `;
@@ -270,7 +255,7 @@ function showError(message) {
 }
 
 function updateDocumentMetadata(post, description, coverURL) {
-    document.title = `${post.title} — Otreva`;
+    document.title = 'Otreva net';
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
 
     upsertMeta('property', 'og:title', post.title);
@@ -392,8 +377,6 @@ function applyTheme(theme) {
     if (toggle) {
         toggle.setAttribute('aria-pressed', String(isDark));
         toggle.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
-        const icon = toggle.querySelector('.theme-icon');
-        if (icon) icon.textContent = isDark ? '☀' : '☾';
     }
 
     document.querySelector('meta[name="theme-color"]')

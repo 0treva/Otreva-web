@@ -8,17 +8,15 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Otreva — Tecnología, filosofía y pensamiento">
     <meta property="og:description" content="Dos autores. Ideas para leer sin prisa.">
-    <meta property="og:image" content="https://test.otreva.net/assets/otreva-hero.webp">
-    <meta property="og:image:alt" content="Un espacio nocturno de lectura y tecnología">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Otreva — Tecnología, filosofía y pensamiento</title>
+    <meta name="twitter:card" content="summary">
+    <title>Otreva net</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?v=20260825-2">
-    <script src="app.js?v=20260825" defer></script>
+    <link rel="stylesheet" href="style.css?v=20260825-4">
+    <script src="app.js?v=20260825-2" defer></script>
 </head>
 <body class="home-page">
     <a class="skip-link" href="#archivo">Saltar a los artículos</a>
@@ -27,32 +25,31 @@
         <div class="header-inner">
             <a class="brand" href="index.html" aria-label="Otreva, inicio">
                 <span class="brand-mark" aria-hidden="true">O</span>
-                <span class="brand-name">Otreva</span>
-                <span class="brand-edition">Con Spiegel</span>
+                <span class="brand-name">treva</span>
             </a>
 
-            <nav class="header-nav" aria-label="Navegación principal">
+            <button class="theme-switch" id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
+                <span class="theme-switch-icon" aria-hidden="true">☀</span>
+                <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+                <span class="theme-switch-icon" aria-hidden="true">☾</span>
+            </button>
+        </div>
+
+        <nav class="home-nav" aria-label="Navegación principal">
                 <a href="#archivo">Artículos</a>
                 <a href="#autores">Autores</a>
                 <a href="donations.html">Apoyar</a>
-                <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
-                    <span class="theme-icon" aria-hidden="true">☾</span>
-                </button>
-            </nav>
-        </div>
+        </nav>
     </header>
 
     <main>
         <section class="hero" aria-labelledby="hero-title">
-            <picture class="hero-media" aria-hidden="true">
-                <img src="assets/otreva-hero.webp" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
-            </picture>
             <div class="hero-inner">
                 <div class="hero-copy-block">
-                    <p class="eyebrow">Otreva <span aria-hidden="true">×</span> Spiegel</p>
-                    <h1 id="hero-title">Ideas para leer<br>sin prisa.</h1>
+                    <p class="eyebrow">Tecnología · Filosofía · Pensamiento</p>
+                    <h1 id="hero-title">Ideas para leer sin prisa.</h1>
                     <p class="hero-copy">Tecnología, filosofía y preguntas que vale la pena explorar con tiempo.</p>
-                    <a class="text-link hero-link" href="#archivo">Empezar a leer <span aria-hidden="true">↓</span></a>
+                    <a class="text-link hero-link" href="#archivo">Explorar el archivo <span aria-hidden="true">↓</span></a>
                 </div>
             </div>
         </section>

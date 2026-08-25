@@ -304,8 +304,6 @@ function applyTheme(theme) {
     if (toggle) {
         toggle.setAttribute('aria-pressed', String(isDark));
         toggle.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
-        const icon = toggle.querySelector('.theme-icon');
-        if (icon) icon.textContent = isDark ? '☀' : '☾';
     }
 
     const themeColor = document.querySelector('meta[name="theme-color"]');
