@@ -799,26 +799,6 @@ button {
     cursor: pointer;
 }
 
-.medium-source {
-    margin-top: 22px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    color: var(--text-soft);
-    font-size: 11px;
-    line-height: 1.4;
-    transition: background-color 150ms ease, color 150ms ease;
-}
-
-.medium-source:hover {
-    background: var(--surface);
-    color: var(--text);
-}
-
 /* Footer */
 .site-footer {
     border-top: 1px solid var(--line);
@@ -1527,8 +1507,7 @@ button {
         gap: 0 30px;
     }
 
-    .aside-heading,
-    .medium-source {
+    .aside-heading {
         grid-column: 1 / -1;
     }
 
@@ -1716,8 +1695,7 @@ button {
         grid-template-columns: 1fr;
     }
 
-    .aside-heading,
-    .medium-source {
+    .aside-heading {
         grid-column: auto;
     }
 
