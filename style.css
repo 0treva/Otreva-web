@@ -205,36 +205,36 @@ button {
     color: var(--text);
 }
 
-.home-header {
+[data-theme="dark"] .home-header {
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(8, 12, 12, 0.92);
     color: #f3f1e9;
 }
 
-.home-header .brand-mark {
+[data-theme="dark"] .home-header .brand-mark {
     border: 1px solid rgba(255, 255, 255, 0.28);
     background: rgba(255, 255, 255, 0.08);
     color: #f3f1e9;
 }
 
-.home-header .brand-edition {
+[data-theme="dark"] .home-header .brand-edition {
     border-color: rgba(255, 255, 255, 0.18);
     color: rgba(243, 241, 233, 0.5);
 }
 
-.home-header .header-nav {
+[data-theme="dark"] .home-header .header-nav {
     color: rgba(243, 241, 233, 0.68);
 }
 
-.home-header .header-nav a:hover {
+[data-theme="dark"] .home-header .header-nav a:hover {
     color: #ffffff;
 }
 
-.home-header .icon-button {
+[data-theme="dark"] .home-header .icon-button {
     border-color: rgba(255, 255, 255, 0.22);
 }
 
-.home-header .icon-button:hover {
+[data-theme="dark"] .home-header .icon-button:hover {
     border-color: rgba(255, 255, 255, 0.42);
     background: rgba(255, 255, 255, 0.08);
 }
