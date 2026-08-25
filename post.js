@@ -249,13 +249,13 @@ function showError(message) {
             <p class="empty-state-mark" aria-hidden="true">404</p>
             <h1>No encontramos la historia</h1>
             <p>${escapeHTML(message)}</p>
-            <a class="primary-button" href="index.html#archivo">Volver al archivo</a>
+            <a class="primary-button" href="index.html?v=20260825-6#archivo">Volver al archivo</a>
         </div>
     `;
 }
 
 function updateDocumentMetadata(post, description, coverURL) {
-    document.title = 'Otreva net';
+    document.title = 'Otreva';
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
 
     upsertMeta('property', 'og:title', post.title);

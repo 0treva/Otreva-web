@@ -153,26 +153,12 @@ button {
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     min-width: max-content;
-}
-
-.brand-mark {
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--text);
-    color: var(--bg);
-    font-family: var(--serif);
-    font-size: 19px;
-    font-weight: 700;
 }
 
 .brand-name {
     font-family: var(--serif);
-    font-size: 25px;
+    font-size: 27px;
     font-weight: 700;
     letter-spacing: -0.035em;
 }
@@ -310,6 +296,7 @@ button {
 
 /* Hero */
 .hero {
+    overflow: hidden;
     min-height: 430px;
     display: flex;
     align-items: center;
@@ -324,6 +311,8 @@ button {
 }
 
 .hero-copy-block {
+    width: 100%;
+    min-width: 0;
     max-width: 880px;
     margin: 0 auto;
     text-align: center;
